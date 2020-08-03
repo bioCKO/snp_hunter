@@ -49,6 +49,7 @@ try:
         if not result.hits:
             csv.write('%s,None,,,,,\n' % cid)
             continue
+
         hit = result.hits[0]
         hsp = result.hits[0].hsps[0]
         line = ','.join([
