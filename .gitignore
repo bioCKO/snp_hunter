@@ -3,6 +3,11 @@
 *.fas
 *.fa
 *.fsa
+blast/blastout*
+data/*
+bin/*
+blast/db/*
+!*/README.txt
 
 # Context dependant
 *.log

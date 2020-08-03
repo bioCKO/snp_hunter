@@ -34,32 +34,32 @@ class BlastResult:
         lines.append("Hits:  %s" % len(self.hits))
         lines.append("")
         for i, hit in enumerate(self.hits):
-            lines.append("Hit %s: %s (%s bp)" % (i, hit.contig_id, hit.length))
+            lines.append("Hit %s: %s (%s bp)" % (i + 1, hit.contig_id, hit.length))
             lines.append("%s HSPs" % len(hit.hsps))
             lines.append("")
             for k, hsp in enumerate(hit.hsps):
-                lines.append("HSP %s" % k)
+                lines.append("HSP %s" % k + 1)
                 lines.append((
                     ("Identity:   %.0f%%" % hsp.identity_pc).ljust(25)
-                    ("E-value:  %.2e" % hsp.evalue).ljust(25)
-                    ("Q-cover: %s%%" % hsp.query_cover)
+                    + ("E-value:  %.2e" % hsp.evalue).ljust(25)
+                    + ("Q-cover: %s%%" % hsp.query_cover)
                 ))
                 lines.append((
                     ("Identities: %s/%s" %
                         (hsp.identities, hsp.length)).ljust(25)
-                    ("Bitscore: %s" % hsp.bitscore).ljust(25)
-                    ("Q-range: %s:%s" %
+                    + ("Bitscore: %s" % hsp.bitscore).ljust(25)
+                    + ("Q-range: %s:%s" %
                         (hsp.query_from, hsp.query_to))
                 ))
                 lines.append((
-                    ("Frame:      %s" % hsp.frame).ljust(25)
-                    ("Gaps:     %s" % hsp.gaps).ljust(25)
-                    ("S-range: %s:%s" %
+                    ("Frame:      %s" % hsp.hit_frame).ljust(25)
+                    + ("Gaps:     %s" % hsp.gaps).ljust(25)
+                    + ("S-range: %s:%s" %
                         (hsp.sub_from, hsp.sub_to))
                 ))
                 lines.append("")
                 lines.append(str(hsp))
-        return '\n\n'.join(lines)
+        return '\n'.join(lines)
 
 
 class Hit:
@@ -78,7 +78,7 @@ class Hit:
         accession = self.soup.find('Hit_accession').text
         return [
             x for x in (hit_id, accession)
-            if not x.lower().contains('no definition')
+            if 'no definition' not in x.lower()
         ][-1]
 
     def get_hsps(self):
@@ -103,7 +103,7 @@ class Hsp:
         self.identities = int(self.soup.find('Hsp_identity').text)
         self.positives = int(self.soup.find('Hsp_positive').text)
         self.gaps = int(self.soup.find('Hsp_gaps').text)
-        self.align_len = int(self.soup.find('Hsp_align_len').text)
+        self.align_len = int(self.soup.find('Hsp_align-len').text)
         self.align_query = self.soup.find('Hsp_qseq').text
         self.align_subject = self.soup.find('Hsp_hseq').text
         self.align_midline = self.soup.find('Hsp_midline').text
@@ -119,7 +119,8 @@ class Hsp:
             while len(string) > n:
                 lines.append(string[:n])
                 string = string[n:]
-            return lines.append(string)
+            lines.append(string)
+            return lines
 
         def scale_generator(n=80):
             """Generate text scale bar in lines of length n."""
@@ -134,13 +135,22 @@ class Hsp:
                     ])
                 )
 
+        i = 0
         lines = []
-
-        for q, s, m in (scale_generator(),
-                        wrap_lines(self.align_query),
-                        wrap_lines(self.align_subject),
-                        wrap_lines(self.align_midline)):
-            lines.append('\n'.join((q, s, m)))
+        query = wrap_lines(self.align_query)
+        midline = wrap_lines(self.align_midline)
+        subject = wrap_lines(self.align_subject)
+        for scale in scale_generator():
+            try:
+                lines.append('\n'.join([
+                    scale,
+                    query[i],
+                    midline[i],
+                    subject[i],
+                ]))
+                i += 1
+            except IndexError:
+                break
         return '\n\n'.join(lines)
 
     def get_identity(self):
@@ -155,6 +165,10 @@ class Hsp:
 
 
 if __name__ == '__main__':
-    path = 'blast/blastout.xml'
-    result = BlastResult(path)
-    print(result.report())
+    path = 'blast/test_blastout.xml'
+    raw_xml = open(path).read()
+    soup = BeautifulSoup(raw_xml, 'xml')
+    x = soup.find('Hsp_align-len')
+
+    # result = BlastResult(path)
+    # print(result.report())
