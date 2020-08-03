@@ -38,7 +38,7 @@ class BlastResult:
             lines.append("%s HSPs" % len(hit.hsps))
             lines.append("")
             for k, hsp in enumerate(hit.hsps):
-                lines.append("HSP %s" % k + 1)
+                lines.append("HSP %s" % (k + 1))
                 lines.append((
                     ("Identity:   %.0f%%" % hsp.identity_pc).ljust(25)
                     + ("E-value:  %.2e" % hsp.evalue).ljust(25)
@@ -58,7 +58,7 @@ class BlastResult:
                         (hsp.sub_from, hsp.sub_to))
                 ))
                 lines.append("")
-                lines.append(str(hsp))
+                lines.append(str(hsp) + '\n\n')
         return '\n'.join(lines)
 
 

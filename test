@@ -8,13 +8,14 @@ input("""
 This test requires that the following are accessible from the project root:
 
 Assembly:   data/top500_M_reads.fas
-BLAST DB:   blast/db/f_hp.fas
+BLAST DB:   blast/db/hp_f.fas
 Program:    blastn
 
+Continue? (CTRL+C to cancel) 
 """)
 
 algorithm = 'blastn'
-database = 'blast/db/f_hp.fas'
+database = 'blast/db/hp_f.fas'
 fas = fasta.read('data/top500_M_reads.fas')
 
 for k, v in fas.items():

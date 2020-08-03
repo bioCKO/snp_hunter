@@ -19,15 +19,15 @@ header = ','.join([
     'Identities',
     'Positives',
     'Align length',
-    'Q-cover %',
+    'Q-cover percent',
 ])
 
 # Sequences to use as BLAST queries
-male_specific_500 = fasta.read("data/top500.fas")
+male_specific_500 = fasta.read("data/top_417_pep.fas")
 
 # BLAST params
-algorithm = 'tblastn'
-dbpath = 'blast/db/F_HP_pep.fas'
+algorithm = 'blastp'
+dbpath = 'blast/db/hp_f_pep.fas'
 
 try:
     csv = open('output.csv', 'a+')
@@ -37,8 +37,11 @@ try:
         # Perform BLAST search -> all hits saved in blastout_*.xml in blast/
         # Blastout.xml files can be read again in future with parse.BlastResult
         result = blast(algorithm, cid, nts, dbpath)
-        hit = result.hit[0]
-        hsp = result.hit[0].hsp[0]
+        if not result.hits:
+            csv.write('None,,,,,,')
+            continue
+        hit = result.hits[0]
+        hsp = result.hits[0].hsps[0]
         line = ','.join([
             hit.contig_id,
             str(hsp.evalue),

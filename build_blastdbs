@@ -8,8 +8,8 @@ Protein FASTA file names must end in "_pep.*" to be processed correctly.
 import os
 import subprocess
 
-data_path = '../data/'
-db_path = '../blast/db/'
+data_path = 'data/'
+db_path = 'blast/db/'
 
 FASTA_EXTS = [
     'fa',
