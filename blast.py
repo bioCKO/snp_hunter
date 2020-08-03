@@ -7,7 +7,7 @@ from parse import BlastResult
 logger = logging.getLogger('root')
 
 
-def blast(seqid, query, dbpath):
+def blast(algorithm, seqid, query, dbpath):
     """Run a blast search, check outcome and return parsed result."""
     queryfile = 'blast/query_%s.fas' % seqid
     outfile = 'blast/blastout_%s.xml' % seqid
@@ -15,7 +15,7 @@ def blast(seqid, query, dbpath):
         f.write('>%s\n%s' % (seqid, query))
 
     args = (
-        'bin/blastn',
+        algorithm,
         '-db', dbpath,
         '-query', queryfile,
         '-out', outfile,
