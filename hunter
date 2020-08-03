@@ -2,6 +2,7 @@
 
 """Hunt for sex-specific transcripts in male/female assemblies."""
 
+import os
 import fasta
 from blast import blast
 
@@ -11,7 +12,15 @@ logging.config.fileConfig('logging/log.conf')
 logger = logging.getLogger('root')
 
 
-# Output file header
+# Output file
+i = 0
+outfile = 'output.csv'
+while True:
+    if not os.path.exists(outfile):
+        break
+    outfile = 'output(%s).csv' % i
+    i += 1
+
 header = ','.join([
     'Contig_id',
     'E-value',
@@ -30,7 +39,7 @@ algorithm = 'blastp'
 dbpath = 'blast/db/hp_f_pep.fas'
 
 try:
-    csv = open('output.csv', 'a+')
+    csv = open(outfile, 'w')
     csv.write(header + '\n')
 
     for cid, nts in male_specific_500.items():
@@ -38,7 +47,7 @@ try:
         # Blastout.xml files can be read again in future with parse.BlastResult
         result = blast(algorithm, cid, nts, dbpath)
         if not result.hits:
-            csv.write('None,,,,,,')
+            csv.write('%s,None,,,,,\n' % cid)
             continue
         hit = result.hits[0]
         hsp = result.hits[0].hsps[0]

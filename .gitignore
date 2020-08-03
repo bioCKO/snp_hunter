@@ -3,6 +3,8 @@
 *.fas
 *.fa
 *.fsa
+*.out
+*.csv
 blast/blastout*
 data/*
 bin/*
