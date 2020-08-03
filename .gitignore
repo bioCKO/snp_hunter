@@ -8,6 +8,7 @@ data/*
 bin/*
 blast/db/*
 !*/README.txt
+!bin/build_blast_dbs.py
 
 # Context dependant
 *.log
