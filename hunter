@@ -22,7 +22,8 @@ while True:
     i += 1
 
 header = ','.join([
-    'Contig_id',
+    'Query',
+    'Subject',
     'E-value',
     'Bitscore',
     'Identities',
@@ -53,6 +54,7 @@ try:
         hit = result.hits[0]
         hsp = result.hits[0].hsps[0]
         line = ','.join([
+            cid,
             hit.contig_id,
             str(hsp.evalue),
             str(round(hsp.bitscore)),
