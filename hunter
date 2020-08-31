@@ -21,7 +21,7 @@ from blast.parse import BlastResult
 import logging
 import logging.config
 logging.config.fileConfig('logging/log.conf')
-logger = logging.getLogger('root')
+logger = logging.getLogger(__name__)
 
 
 # Sequences to use as BLAST queries
@@ -45,19 +45,26 @@ blast_combos = [
     ("blastp", FSP_pep, male_hp_pep),
 ]
 
+
 #for alg, query, db in blast_combos:
+#    logger.info(f"Running {alg}: {query} => {db}...")
 #    outfile = blast.blast(alg, query, db)
 #    outfiles.append(outfile)
 
 # %% Write output
 
+# logger.info("Rendering BLAST output to CSV files...")
 #for outfile in outfiles:
 #    result = BlastResult(outfile)
 #    result.to_csv(os.path.basename(outfile).replace('.xml', '.csv'))
 
 # %% Filter alignments and CDS BLAST
 
+if not os.path.exists('cds_alignments'):
+    os.mkdir('cds_alignments')
+
 # *** Males ***
+logger.info("Filtering male-specific transcripts protein/CDS identity...")
 m_result = MSP_pep.replace('data/', 'blastout_').replace('.fas', '.csv')
 mpep = pd.read_csv(m_result, index_col=0)
 
@@ -77,14 +84,18 @@ for q_key, s_key in zip(mpep.index, mpep['Hit']):
     query = mcds[q_key]
     subject = fcds[s_key]
     result = blast.pairwise_blast('blastn', query, subject)
-    identity = result.iterations[0].hits[0].hsps[0].identity_pc
-    with open('alignment_{ q_key }.txt', 'w') as f:
+    try:
+        identity = result.iterations[0].hits[0].hsps[0].identity_pc
+    except IndexError:
+        identity = 0
+    with open(f'cds_alignments/alignment_M_{ q_key }.txt', 'w') as f:
         f.write(result.report())
     cds_identities.append(identity)
 mpep['CDS_identity'] = cds_identities
 
 
 # *** Females ***
+logger.info("Filtering female-specific transcripts by protein/CDS identity...")
 f_result = FSP_pep.replace('data/', 'blastout_').replace('.fas', '.csv')
 fpep = pd.read_csv(f_result, index_col=0)
 
@@ -102,22 +113,29 @@ for q_key, s_key in zip(fpep.index, fpep['Hit']):
     query = fcds[q_key]
     subject = mcds[s_key]
     result = blast.pairwise_blast('blastn', query, subject)
-    identity = result.iterations[0].hits[0].hsps[0].identity_pc
-    with open('alignment_{ q_key }.txt', 'w') as f:
+    try:
+        identity = result.iterations[0].hits[0].hsps[0].identity_pc
+    except IndexError:
+        identity = None
+    with open(f'cds_alignments/alignment_F_{ q_key }.txt', 'w') as f:
         f.write(result.report())
     cds_identities.append(identity)
 
 fpep['CDS_identity'] = cds_identities
 
-# %% Write output to file
-mpep.to_csv('MSP_pep_vs_cds.csv')
-fpep.to_csv('FSP_pep_vs_cds.csv')
-
 # %% Try and add annotations
+logger.info("Appending annotations...")
 try:
     m_ants = pd.read_csv('data/MSP_1900_annotated.csv', index_col=0)
     f_ants = pd.read_csv('data/FSP_1825_annotated.csv', index_col=0)
-    mpep['Annotation'] = m_ants.reindex(mpep.index, inplace=True)['Definition']
-    fpep['Annotation'] = f_ants.reindex(mpep.index, inplace=True)['Definition']
+    mpep['Annotation'] = m_ants.reindex(mpep.index)['Definition']
+    fpep['Annotation'] = f_ants.reindex(mpep.index)['Definition']
 except Exception as exc:
     print("Error parsing annotations:\n", str(exc))
+
+# %% Write output to file
+logger.info("Writing output to file...")
+mpep.to_csv('MSP_pep_vs_cds.csv')
+fpep.to_csv('FSP_pep_vs_cds.csv')
+
+logger.info("Hunting complete")

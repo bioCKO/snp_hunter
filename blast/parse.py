@@ -33,7 +33,6 @@ class BlastResult:
 
         lines = []
         lines.append("### Output from %s ###" % self.algorithm)
-        lines.append("Query: %s (%s bp)" % (self.query, self.query_length))
         lines.append("DB:    %s" % self.db)
         lines.append("Iterations:  %s" % len(self.iterations))
         lines.append("")
@@ -46,7 +45,7 @@ class BlastResult:
 
             for j, hit in enumerate(it.hits):
                 lines.append("Hit %s: %s (%s bp)" %
-                             (j + 1, hit.contig_id, hit.length))
+                             (j + 1, hit.accession, hit.length))
                 lines.append("%s HSPs" % len(hit.hsps))
                 lines.append("")
                 for k, hsp in enumerate(hit.hsps):

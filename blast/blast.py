@@ -6,7 +6,7 @@ import logging
 import subprocess
 from .parse import BlastResult
 
-logger = logging.getLogger('root')
+logger = logging.getLogger(__name__)
 
 
 def blast(algorithm, queryfile, db):
