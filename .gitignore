@@ -10,6 +10,7 @@ blast/blastout*
 data/*
 bin/*
 blast/db/*
+cds_alignmnets/*
 !*/README.txt
 
 # Context dependant
