@@ -12,8 +12,8 @@ def blast(algorithm, queryfile, db):
     name = os.path.basename(queryfile)
     outfilename = 'blast/blastout_%s.xml' % name
 
-    if not os.path.exists(f"{ db }.nin"):
-        raise FileNotFoundError(f'BLAST DB "{ db }" not found')
+    if not (os.path.exists(f"{ db }.nhr") or os.path.exists(f"{ db }.phr")):
+        raise FileNotFoundError(f'No BLAST DB found for "{ db }"')
     if not os.path.exists(queryfile):
         raise FileNotFoundError(f'Query file "{ queryfile }" not found')
 
@@ -25,6 +25,7 @@ def blast(algorithm, queryfile, db):
         '-outfmt', '5',
         "-evalue", '1E-50',
         "-max_target_seqs", '10',
+        "-num_threads", '50',
     )
     try:
         subprocess.run(args, check=True)

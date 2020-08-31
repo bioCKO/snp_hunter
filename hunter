@@ -23,10 +23,10 @@ logger = logging.getLogger('root')
 
 
 # Sequences to use as BLAST queries
-MSP_cds = fasta.read("data/sex_specific/MSP_cds.fas")
-MSP_pep = fasta.read("data/sex_specific/MSP_pep.fas")
-FSP_cds = fasta.read("data/sex_specific/FSP_cds.fas")
-FSP_pep = fasta.read("data/sex_specific/FSP_pep.fas")
+MSP_cds = "data/MSP_cds.fas"
+MSP_pep = "data/MSP_pep.fas"
+FSP_cds = "data/FSP_cds.fas"
+FSP_pep = "data/FSP_pep.fas"
 
 # Assemblies to BLAST against
 male_hp_cds = "blast/db/hp_m_cds.fas"
@@ -39,10 +39,10 @@ female_hp_pep = "blast/db/hp_f_pep.fas"
 outfiles = []
 
 blast_combos = [
-    ("BLASTN", MSP_cds, female_hp_cds),
-    ("BLASTN", FSP_cds, male_hp_cds),
-    ("BLASTP", MSP_pep, female_hp_pep),
-    ("BLASTP", FSP_pep, male_hp_pep),
+    ("blastn", MSP_cds, female_hp_cds),
+    ("blastn", FSP_cds, male_hp_cds),
+    ("blastp", MSP_pep, female_hp_pep),
+    ("blastp", FSP_pep, male_hp_pep),
 ]
 
 for alg, query, db in blast_combos:
