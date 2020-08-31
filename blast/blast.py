@@ -66,4 +66,4 @@ def pairwise_blast(algorithm, query, subject):
         os.remove(queryfile)
         os.remove(subjectfile)
 
-    # Parse out alignment identity % and return
+    return BlastResult(outfile)

@@ -24,11 +24,11 @@ logging.config.fileConfig('logging/log.conf')
 logger = logging.getLogger('root')
 
 
-# Sequences to use as BLAST queries
-MSP_cds = fasta.read("data/sex_specific/MSP_cds.fas")
-MSP_pep = fasta.read("data/sex_specific/MSP_pep.fas")
-FSP_cds = fasta.read("data/sex_specific/FSP_cds.fas")
-FSP_pep = fasta.read("data/sex_specific/FSP_pep.fas")
+# Sequences to use as BLAST queries - these are the sex marker candidates
+MSP_cds = fasta.read("data/MSP_cds.fas")
+MSP_pep = fasta.read("data/MSP_pep.fas")
+FSP_cds = fasta.read("data/FSP_cds.fas")
+FSP_pep = fasta.read("data/FSP_pep.fas")
 
 # Assemblies to BLAST against
 male_hp_cds = "blast/db/hp_m_cds.fas"
@@ -49,28 +49,77 @@ for alg, query, db in blast_combos:
     outfile = blast.blast(alg, query, db)
     outfiles.append(outfile)
 
-# %% Filter alignments and CDS BLAST
-
-mcds = pd.read_csv('MSP_cds.csv', index_col=0)
-mpep = pd.read_csv('MSP_pep.csv', index_col=0)
-
-# Filter out transcripts with no hits
-mpep = mpep.loc[mpep['Identity_percent'] != nan]
-# Filter to protein matches with reasonable but imperfect identity
-mpep = mpep.loc[mpep['Identity_percent'] < 80].copy()
-# Extract query:subject CDS sequences for these and pairwise BLAST them
-mfas = fasta.read(male_hp_cds)
-ffas = fasta.read(female_hp_cds)
-mcds = {k: mfas[k] for k in mpep.index}
-fcds = {k: ffas[k] for k in mpep.index}
-cds_identities = []
-
-for query, subject in zip(mcds, fcds):
-    result = blast.pairwise_blast(query, subject)
-
-
 # %% Write output
 
 for outfile in outfiles:
     result = BlastResult(outfile)
     result.to_csv(os.path.basename(outfile).replace('.xml', '.csv'))
+
+# %% Filter alignments and CDS BLAST
+
+# *** Males ***
+mcds = pd.read_csv(MSP_cds.replace('.fas', '.csv'), index_col=0)
+mpep = pd.read_csv(MSP_pep.replace('.fas', '.csv'), index_col=0)
+
+# Filter out transcripts with no hits
+mpep = mpep.loc[mpep['Identity_percent'] != nan]
+# Filter to protein matches with reasonable but imperfect identity
+mpep = mpep.loc[mpep['Identity_percent'] < 80].copy()
+# Extract query:subject CDS sequences
+mfas = fasta.read(male_hp_cds)
+ffas = fasta.read(female_hp_cds)
+mcds = {k: mfas[k] for k in mpep.index}
+fcds = {k: ffas[k] for k in mpep.index}
+cds_identities = []
+# Pairwise BLAST CDS query:subject pairs and append identity% to CSV
+for q_key, s_key in zip(mcds.keys(), fcds.keys()):
+    query = mcds[q_key]
+    subject = mcds[s_key]
+    result = blast.pairwise_blast(query, subject)
+    identity = result.iterations[0].hits[0].hsps[0].identity_pc
+    with open('alignment_{ q_key }.txt', 'w') as f:
+        f.write(result.report())
+    cds_identities.append(identity)
+mpep['CDS_identity'] = cds_identities
+
+
+# *** Females ***
+fcds = pd.read_csv(FSP_cds.replace('.fas', '.csv'), index_col=0)
+fpep = pd.read_csv(FSP_pep.replace('.fas', '.csv'), index_col=0)
+
+# Filter out transcripts with no hits
+fpep = fpep.loc[fpep['Identity_percent'] != nan]
+# Filter to protein matches with reasonable but imperfect identity
+fpep = fpep.loc[fpep['Identity_percent'] < 80].copy()
+# Extract query:subject CDS sequences for these and pairwise BLAST them
+mfas = fasta.read(male_hp_cds)
+ffas = fasta.read(female_hp_cds)
+mcds = {k: mfas[k] for k in fpep.index}
+fcds = {k: ffas[k] for k in fpep.index}
+cds_identities = []
+
+for q_key, s_key in zip(fcds.keys(), mcds.keys()):
+    query = mcds[q_key]
+    subject = mcds[s_key]
+    result = blast.pairwise_blast(query, subject)
+    identity = result.iterations[0].hits[0].hsps[0].identity_pc
+    with open('alignment_{ q_key }.txt', 'w') as f:
+        f.write(result.report())
+    cds_identities.append(identity)
+
+fpep['CDS_identity'] = cds_identities
+
+# %% Write output to file
+mpep.to_csv('MSP_pep_vs_cds.csv')
+fpep.to_csv('FSP_pep_vs_cds.csv')
+
+# %% Try and add annotations
+try:
+    m_ants = pd.read_csv(
+        '../annotation/runs/run4/male_specific_n1900_pep.csv', index_col=0)
+    f_ants = pd.read_csv(
+        '../annotation/runs/run4/female_specific_n1825_pep.csv', index_col=0)
+    mpep['Annotation'] = m_ants.reindex(mpep.index, inplace=True)['Definition']
+    fpep['Annotation'] = f_ants.reindex(mpep.index, inplace=True)['Definition']
+except Exception as exc:
+    print("Error parsing annotations:\n", str(exc))
