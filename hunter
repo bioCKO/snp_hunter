@@ -13,7 +13,9 @@ BLAST back against male assembly
 
 import os
 import fasta
-from blast.blast import blast
+import pandas as pd
+from numpy import nan
+from blast import blast
 from blast.parse import BlastResult
 
 import logging
@@ -39,22 +41,36 @@ female_hp_pep = "blast/db/hp_f_pep.fas"
 outfiles = []
 
 blast_combos = [
-    ("BLASTN", MSP_cds, female_hp_cds),
-    ("BLASTN", FSP_cds, male_hp_cds),
-    ("BLASTP", MSP_pep, female_hp_pep),
-    ("BLASTP", FSP_pep, male_hp_pep),
+    ("blastp", MSP_pep, female_hp_pep),
+    ("blastp", FSP_pep, male_hp_pep),
 ]
 
 for alg, query, db in blast_combos:
-    outfile = blast(alg, query, db)
+    outfile = blast.blast(alg, query, db)
     outfiles.append(outfile)
 
-# %% Filter alignments
-# **optional
+# %% Filter alignments and CDS BLAST
+
+mcds = pd.read_csv('MSP_cds.csv', index_col=0)
+mpep = pd.read_csv('MSP_pep.csv', index_col=0)
+
+# Filter out transcripts with no hits
+mpep = mpep.loc[mpep['Identity_percent'] != nan]
+# Filter to protein matches with reasonable but imperfect identity
+mpep = mpep.loc[mpep['Identity_percent'] < 80].copy()
+# Extract query:subject CDS sequences for these and pairwise BLAST them
+mfas = fasta.read(male_hp_cds)
+ffas = fasta.read(female_hp_cds)
+mcds = {k: mfas[k] for k in mpep.index}
+fcds = {k: ffas[k] for k in mpep.index}
+cds_identities = []
+
+for query, subject in zip(mcds, fcds):
+    result = blast.pairwise_blast(query, subject)
+
 
 # %% Write output
 
 for outfile in outfiles:
-    csvfile = os.path.basename(outfile.replace('.xml', '.csv'))
     result = BlastResult(outfile)
-    result.to_csv(csvfile)
+    result.to_csv(os.path.basename(outfile).replace('.xml', '.csv'))
