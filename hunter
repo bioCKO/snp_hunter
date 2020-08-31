@@ -45,37 +45,38 @@ blast_combos = [
     ("blastp", FSP_pep, male_hp_pep),
 ]
 
-for alg, query, db in blast_combos:
-    outfile = blast.blast(alg, query, db)
-    outfiles.append(outfile)
+#for alg, query, db in blast_combos:
+#    outfile = blast.blast(alg, query, db)
+#    outfiles.append(outfile)
 
 # %% Write output
 
-for outfile in outfiles:
-    result = BlastResult(outfile)
-    result.to_csv(os.path.basename(outfile).replace('.xml', '.csv'))
+#for outfile in outfiles:
+#    result = BlastResult(outfile)
+#    result.to_csv(os.path.basename(outfile).replace('.xml', '.csv'))
 
 # %% Filter alignments and CDS BLAST
 
 # *** Males ***
-mcds = pd.read_csv(MSP_cds.replace('.fas', '.csv'), index_col=0)
-mpep = pd.read_csv(MSP_pep.replace('.fas', '.csv'), index_col=0)
+m_result = MSP_pep.replace('data/', 'blastout_').replace('.fas', '.csv')
+mpep = pd.read_csv(m_result, index_col=0)
 
 # Filter out transcripts with no hits
 mpep = mpep.loc[mpep['Identity_percent'] != nan]
-# Filter to protein matches with reasonable but imperfect identity
+# Filter to protein matches to alignments with imperfect identity
 mpep = mpep.loc[mpep['Identity_percent'] < 80].copy()
 # Extract query:subject CDS sequences
-mfas = fasta.read(male_hp_cds)
-ffas = fasta.read(female_hp_cds)
+mfas = fasta.read(male_hp_cds.replace('blast/db', 'data'))
+ffas = fasta.read(female_hp_cds.replace('blast/db', 'data'))
 mcds = {k: mfas[k] for k in mpep.index}
-fcds = {k: ffas[k] for k in mpep.index}
+fcds = {k: ffas[k] for k in mpep['Hit']}
+
 cds_identities = []
 # Pairwise BLAST CDS query:subject pairs and append identity% to CSV
-for q_key, s_key in zip(mcds.keys(), fcds.keys()):
+for q_key, s_key in zip(mpep.index, mpep['Hit']):
     query = mcds[q_key]
-    subject = mcds[s_key]
-    result = blast.pairwise_blast(query, subject)
+    subject = fcds[s_key]
+    result = blast.pairwise_blast('blastn', query, subject)
     identity = result.iterations[0].hits[0].hsps[0].identity_pc
     with open('alignment_{ q_key }.txt', 'w') as f:
         f.write(result.report())
@@ -84,24 +85,23 @@ mpep['CDS_identity'] = cds_identities
 
 
 # *** Females ***
-fcds = pd.read_csv(FSP_cds.replace('.fas', '.csv'), index_col=0)
-fpep = pd.read_csv(FSP_pep.replace('.fas', '.csv'), index_col=0)
+f_result = FSP_pep.replace('data/', 'blastout_').replace('.fas', '.csv')
+fpep = pd.read_csv(f_result, index_col=0)
 
 # Filter out transcripts with no hits
 fpep = fpep.loc[fpep['Identity_percent'] != nan]
 # Filter to protein matches with reasonable but imperfect identity
 fpep = fpep.loc[fpep['Identity_percent'] < 80].copy()
 # Extract query:subject CDS sequences for these and pairwise BLAST them
-mfas = fasta.read(male_hp_cds)
-ffas = fasta.read(female_hp_cds)
-mcds = {k: mfas[k] for k in fpep.index}
+# mfas & ffas defined above
 fcds = {k: ffas[k] for k in fpep.index}
+mcds = {k: mfas[k] for k in fpep['Hit']}
 cds_identities = []
 
-for q_key, s_key in zip(fcds.keys(), mcds.keys()):
-    query = mcds[q_key]
+for q_key, s_key in zip(fpep.index, fpep['Hit']):
+    query = fcds[q_key]
     subject = mcds[s_key]
-    result = blast.pairwise_blast(query, subject)
+    result = blast.pairwise_blast('blastn', query, subject)
     identity = result.iterations[0].hits[0].hsps[0].identity_pc
     with open('alignment_{ q_key }.txt', 'w') as f:
         f.write(result.report())
@@ -115,10 +115,8 @@ fpep.to_csv('FSP_pep_vs_cds.csv')
 
 # %% Try and add annotations
 try:
-    m_ants = pd.read_csv(
-        '../annotation/runs/run4/male_specific_n1900_pep.csv', index_col=0)
-    f_ants = pd.read_csv(
-        '../annotation/runs/run4/female_specific_n1825_pep.csv', index_col=0)
+    m_ants = pd.read_csv('data/MSP_1900_annotated.csv', index_col=0)
+    f_ants = pd.read_csv('data/FSP_1825_annotated.csv', index_col=0)
     mpep['Annotation'] = m_ants.reindex(mpep.index, inplace=True)['Definition']
     fpep['Annotation'] = f_ants.reindex(mpep.index, inplace=True)['Definition']
 except Exception as exc:
