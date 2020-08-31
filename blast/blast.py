@@ -65,3 +65,4 @@ def pairwise_blast(algorithm, query, subject):
     finally:
         os.remove(queryfile)
         os.remove(subjectfile)
+    return BlastResult(outfile)
