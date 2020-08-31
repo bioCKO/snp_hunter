@@ -45,9 +45,9 @@ def pairwise_blast(algorithm, query, subject):
     outfile = os.path.join('blast', uuid.uuid4().hex + ".xml")
 
     with open(queryfile, 'w') as f:
-        f.write(query)
+        f.write(">CDS_query\n" + query)
     with open(subjectfile, 'w') as f:
-        f.write(subject)
+        f.write(">CSD_subject\n" + subject)
 
     args = (
         algorithm,
@@ -55,16 +55,13 @@ def pairwise_blast(algorithm, query, subject):
         '-subject', subjectfile,
         '-out', outfile,
         '-outfmt', '5',
-        "-evalue", '0.01',
         "-max_target_seqs", '10',
     )
     try:
         subprocess.run(args, check=True)
     except subprocess.CalledProcessError as exc:
         logger.error(exc.stderr)
-        raise exc
+        raise RuntimeError(exc.stderr)
     finally:
         os.remove(queryfile)
         os.remove(subjectfile)
-
-    # Parse out alignment identity % and return
