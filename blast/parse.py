@@ -1,5 +1,6 @@
 """Parse output files to Python objects."""
 
+import numpy as np
 from bs4 import BeautifulSoup
 
 
@@ -12,54 +13,109 @@ class BlastResult:
         self.soup = BeautifulSoup(self.raw_xml, 'xml')
         self.algorithm = self.get_alg()
         self.db = self.soup.find('BlastOutput_db').text
-        self.query = self.soup.find('BlastOutput_query-def').text
-        self.query_length = self.soup.find('BlastOutput_query-len').text
-        self.hits = self.get_hits()
+        self.iterations = self.get_iterations()
 
     def get_alg(self):
         """Parse out blast program used."""
         alg = self.soup.find('BlastOutput_program')
         return alg.text
 
-    def get_hits(self):
-        """Parse hit stats and return list of hits."""
-        return [Hit(h) for h in self.soup.find_all('Hit')]
+    def get_iterations(self):
+        """Parse and return list of iterations."""
+        return [Iteration(i) for i in self.soup.find_all('Iteration')]
 
     def report(self):
         """Return string report of this hit."""
+        n_queries = len(self.iterations)
+        if n_queries > 5:
+            input(f"Print output for {n_queries} queries!?\n"
+                  + "(Press <Enter> to continue or CTRL+C to cancel)\n> ")
+
         lines = []
         lines.append("### Output from %s ###" % self.algorithm)
         lines.append("Query: %s (%s bp)" % (self.query, self.query_length))
         lines.append("DB:    %s" % self.db)
-        lines.append("Hits:  %s" % len(self.hits))
+        lines.append("Iterations:  %s" % len(self.iterations))
         lines.append("")
-        for i, hit in enumerate(self.hits):
-            lines.append("Hit %s: %s (%s bp)" % (i + 1, hit.contig_id, hit.length))
-            lines.append("%s HSPs" % len(hit.hsps))
-            lines.append("")
-            for k, hsp in enumerate(hit.hsps):
-                lines.append("HSP %s" % (k + 1))
-                lines.append((
-                    ("Identity:   %.0f%%" % hsp.identity_pc).ljust(25)
-                    + ("E-value:  %.2e" % hsp.evalue).ljust(25)
-                    + ("Q-cover: %s%%" % hsp.query_cover)
-                ))
-                lines.append((
-                    ("Identities: %s/%s" %
-                        (hsp.identities, hsp.length)).ljust(25)
-                    + ("Bitscore: %s" % hsp.bitscore).ljust(25)
-                    + ("Q-range: %s:%s" %
-                        (hsp.query_from, hsp.query_to))
-                ))
-                lines.append((
-                    ("Frame:      %s" % hsp.hit_frame).ljust(25)
-                    + ("Gaps:     %s" % hsp.gaps).ljust(25)
-                    + ("S-range: %s:%s" %
-                        (hsp.sub_from, hsp.sub_to))
-                ))
+
+        for i, it in enumerate(self.iterations):
+            lines.append('=' * 80)
+            lines.append("\nIteration %s: %s (%s bp)\n" %
+                         (i, it.query, it.query_length))
+            lines.append("Hits:  %s" % len(it.hits))
+
+            for j, hit in enumerate(it.hits):
+                lines.append("Hit %s: %s (%s bp)" %
+                             (j + 1, hit.contig_id, hit.length))
+                lines.append("%s HSPs" % len(hit.hsps))
                 lines.append("")
-                lines.append(str(hsp) + '\n\n')
+                for k, hsp in enumerate(hit.hsps):
+                    lines.append("HSP %s" % (k + 1))
+                    lines.append((
+                        ("Identity:   %.0f%%" % hsp.identity_pc).ljust(25)
+                        + ("E-value:  %.2e" % hsp.evalue).ljust(25)
+                        + ("Q-cover: %s%%" % hsp.query_cover)
+                    ))
+                    lines.append((
+                        ("Identities: %s/%s" %
+                            (hsp.identities, hsp.length)).ljust(25)
+                        + ("Bitscore: %s" % hsp.bitscore).ljust(25)
+                        + ("Q-range: %s:%s" %
+                            (hsp.query_from, hsp.query_to))
+                    ))
+                    lines.append((
+                        ("Frame:      %s" % hsp.hit_frame).ljust(25)
+                        + ("Gaps:     %s" % hsp.gaps).ljust(25)
+                        + ("S-range: %s:%s" %
+                            (hsp.sub_from, hsp.sub_to))
+                    ))
+                    lines.append('\n%s\n\n' % str(hsp))
+                lines.append('')
         return '\n'.join(lines)
+
+    def to_csv(self, fname):
+        """Write BlastOut object to CSV file."""
+        header = ','.join([
+            'Transcript',
+            'Length (bp)',
+            'Hit_accession',
+            'Definition',
+            'E-value',
+            'Bitscore',
+        ])
+
+        with open(fname, 'w') as csv:
+            csv.write(header + '\n')
+            for iter in self.iterations:
+                line = []
+                line.append(iter.query)
+                line.append(iter.query_length)
+                if iter.hits:
+                    hit = iter.hits[0]
+                    line.append(hit.accession)
+                    line.append(hit.definition)
+                    line.append('%.2e' % hit.evalue)
+                    line.append('%.1f' % hit.bitscore)
+                else:
+                    line.append('No significant hits,,')
+                csv.write(','.join(line) + '\n')
+
+        print('Output written to %s.' % fname)
+
+
+class Iteration:
+    """Holds a set of hits for a given query sequence."""
+
+    def __init__(self, soup):
+        """Parse hits from soup."""
+        self.soup = soup
+        self.query = self.soup.find('Iteration_query-def').text
+        self.query_length = self.soup.find('Iteration_query-len').text
+        self.hits = self.get_hits()
+
+    def get_hits(self):
+        """Parse hit stats and return list of hits."""
+        return [Hit(h) for h in self.soup.find_all('Hit')]
 
 
 class Hit:
@@ -68,18 +124,12 @@ class Hit:
     def __init__(self, soup):
         """Parse hit stats from hit soup."""
         self.soup = soup
-        self.contig_id = self.get_id()
+        self.accession = self.soup.find('Hit_id').text
+        self.definition = self.soup.find('Hit_def').text
         self.length = int(self.soup.find('Hit_len').text)
         self.hsps = self.get_hsps()
-
-    def get_id(self):
-        """Return the hit subject contig ID."""
-        hit_id = self.soup.find('Hit_id').text
-        accession = self.soup.find('Hit_accession').text
-        return [
-            x for x in (hit_id, accession)
-            if 'no definition' not in x.lower()
-        ][-1]
+        self.evalue = np.prod([hsp.evalue for hsp in self.hsps])
+        self.bitscore = sum([hsp.bitscore for hsp in self.hsps])
 
     def get_hsps(self):
         """Return a list of high-scoring pairs for this hit."""
@@ -162,13 +212,3 @@ class Hsp:
     def get_query_coverage(self):
         """Return percentage coverage of query sequence by this hsp."""
         return 100 * (self.query_to - self.query_from) / self.parent.length
-
-
-if __name__ == '__main__':
-    path = 'blast/test_blastout.xml'
-    raw_xml = open(path).read()
-    soup = BeautifulSoup(raw_xml, 'xml')
-    x = soup.find('Hsp_align-len')
-
-    # result = BlastResult(path)
-    # print(result.report())

@@ -1,10 +1,20 @@
 #!/usr/bin/env python3
 
-"""Hunt for sex-specific transcripts in male/female assemblies."""
+"""Hunt for sex-specific transcripts in male/female assemblies.
+
+What are we looking for?
+
+=> Is it full of SNPs (rather than a splice variant)?
+
+BLAST back against male assembly
+
+=> Is there a higher identity hit could be an X allele?
+"""
 
 import os
 import fasta
-from blast import blast
+from blast.blast import blast
+from blast.parse import BlastResult
 
 import logging
 import logging.config
@@ -33,58 +43,40 @@ header = ','.join([
 ])
 
 # Sequences to use as BLAST queries
-male_specific_500 = fasta.read("data/top_417_pep.fas")
+MSP_cds = fasta.read("data/sex_specific/MSP_cds.fas")
+MSP_pep = fasta.read("data/sex_specific/MSP_pep.fas")
+FSP_cds = fasta.read("data/sex_specific/FSP_cds.fas")
+FSP_pep = fasta.read("data/sex_specific/FSP_pep.fas")
 
-# BLAST params
-algorithm = 'blastp'
-dbpath = 'blast/db/hp_f_pep.fas'
+# Assemblies to BLAST against
+male_hp_cds = "blast/db/hp_m_cds.fas"
+female_hp_cds = "blast/db/hp_f_cds.fas"
+male_hp_pep = "blast/db/hp_m_pep.fas"
+female_hp_pep = "blast/db/hp_f_pep.fas"
+
+# Generate BLAST alignments
+
 
 try:
     csv = open(outfile, 'w')
     csv.write(header + '\n')
 
-    for cid, nts in male_specific_500.items():
-        # Perform BLAST search -> all hits saved in blastout_*.xml in blast/
-        # Blastout.xml files can be read again in future with parse.BlastResult
-        result = blast(algorithm, cid, nts, dbpath)
-        if not result.hits:
-            csv.write('%s,None,,,,,\n' % cid)
-            continue
+    if not result.hits:
+        csv.write('%s,None,,,,,\n' % cid)
+        continue
 
-        hit = result.hits[0]
-        hsp = result.hits[0].hsps[0]
-        line = ','.join([
-            cid,
-            hit.contig_id,
-            str(hsp.evalue),
-            str(round(hsp.bitscore)),
-            str(hsp.identities),
-            str(hsp.positives),
-            str(hsp.length),
-            str(round(hsp.query_cover)),
-        ])
-        csv.write(line + '\n')
+    hit = result.hits[0]
+    hsp = result.hits[0].hsps[0]
+    line = ','.join([
+        cid,
+        hit.contig_id,
+        str(hsp.evalue),
+        str(round(hsp.bitscore)),
+        str(hsp.identities),
+        str(hsp.positives),
+        str(hsp.length),
+        str(round(hsp.query_cover)),
+    ])
+    csv.write(line + '\n')
 finally:
     csv.close()
-
-    """
-    What are we looking for?
-    => Is it full of SNPs (rather than a splice variant)?
-    => BLAST back against male assembly
-        => Is there a higher identity hit could be an X allele?
-    """
-
-# %% Round 2
-
-# candidates = []  # (CID, CID) from (male, female) assembly
-# female_hp = fasta.read("data/F_HP_pep.fas")
-
-# for candidate in candidates:
-    # M_cid, F_cid = candidate
-    # Get cds + protein for each
-    # If protein conservation greater than cds, we have synonymous mutations
-    # CSV <= [M_cid, F_cid, cDNA length, CDS length,
-    #           Pep length, UTR SNPs, CDS SNPs, synonymous SNPs]
-    # pass
-
-# ==> Filter and observe
