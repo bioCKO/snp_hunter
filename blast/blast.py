@@ -43,6 +43,12 @@ def pairwise_blast(algorithm, query, subject):
     queryfile = os.path.join('blast', uuid.uuid4().hex + ".fas")
     subjectfile = os.path.join('blast', uuid.uuid4().hex + ".fas")
     outfile = os.path.join('blast', uuid.uuid4().hex + ".xml")
+
+    with open(queryfile, 'w') as f:
+        f.write(query)
+    with open(subjectfile, 'w') as f:
+        f.write(subject)
+
     args = (
         algorithm,
         '-query', queryfile,
