@@ -5,6 +5,7 @@
 *.fsa
 *.out
 *.csv
+output/*
 blast/blastout*
 data/*
 bin/*

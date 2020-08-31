@@ -22,26 +22,6 @@ logging.config.fileConfig('logging/log.conf')
 logger = logging.getLogger('root')
 
 
-# Output file
-i = 0
-outfile = 'output.csv'
-while True:
-    if not os.path.exists(outfile):
-        break
-    outfile = 'output(%s).csv' % i
-    i += 1
-
-header = ','.join([
-    'Query',
-    'Subject',
-    'E-value',
-    'Bitscore',
-    'Identities',
-    'Positives',
-    'Align length',
-    'Q-cover percent',
-])
-
 # Sequences to use as BLAST queries
 MSP_cds = fasta.read("data/sex_specific/MSP_cds.fas")
 MSP_pep = fasta.read("data/sex_specific/MSP_pep.fas")
@@ -54,29 +34,27 @@ female_hp_cds = "blast/db/hp_f_cds.fas"
 male_hp_pep = "blast/db/hp_m_pep.fas"
 female_hp_pep = "blast/db/hp_f_pep.fas"
 
-# Generate BLAST alignments
+# %% Generate BLAST alignments
 
+outfiles = []
 
-try:
-    csv = open(outfile, 'w')
-    csv.write(header + '\n')
+blast_combos = [
+    ("BLASTN", MSP_cds, female_hp_cds),
+    ("BLASTN", FSP_cds, male_hp_cds),
+    ("BLASTP", MSP_pep, female_hp_pep),
+    ("BLASTP", FSP_pep, male_hp_pep),
+]
 
-    if not result.hits:
-        csv.write('%s,None,,,,,\n' % cid)
-        continue
+for alg, query, db in blast_combos:
+    outfile = blast(alg, query, db)
+    outfiles.append(outfile)
 
-    hit = result.hits[0]
-    hsp = result.hits[0].hsps[0]
-    line = ','.join([
-        cid,
-        hit.contig_id,
-        str(hsp.evalue),
-        str(round(hsp.bitscore)),
-        str(hsp.identities),
-        str(hsp.positives),
-        str(hsp.length),
-        str(round(hsp.query_cover)),
-    ])
-    csv.write(line + '\n')
-finally:
-    csv.close()
+# %% Filter alignments
+# **optional
+
+# %% Write output
+
+for outfile in outfiles:
+    csvfile = os.path.basename(outfile.replace('.xml', '.csv'))
+    result = BlastResult(outfile)
+    result.to_csv(csvfile)

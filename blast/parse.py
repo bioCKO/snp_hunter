@@ -76,12 +76,14 @@ class BlastResult:
     def to_csv(self, fname):
         """Write BlastOut object to CSV file."""
         header = ','.join([
-            'Transcript',
-            'Length (bp)',
-            'Hit_accession',
-            'Definition',
+            'Query',
+            'Length',
+            'Hit',
             'E-value',
             'Bitscore',
+            'Identity_percent',
+            'Alignment_length'
+            'Qcover_percent',
         ])
 
         with open(fname, 'w') as csv:
@@ -93,11 +95,13 @@ class BlastResult:
                 if iter.hits:
                     hit = iter.hits[0]
                     line.append(hit.accession)
-                    line.append(hit.definition)
                     line.append('%.2e' % hit.evalue)
                     line.append('%.1f' % hit.bitscore)
+                    line.append('%s' % hit.hsps[0].identity_pc)
+                    line.append('%s' % hit.hsps[0].align_len)
+                    line.append('%s' % hit.hsps[0].query_cover)
                 else:
-                    line.append('No significant hits,,')
+                    line.append('No significant hits,,,,,')
                 csv.write(','.join(line) + '\n')
 
         print('Output written to %s.' % fname)

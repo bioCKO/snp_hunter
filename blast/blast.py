@@ -1,24 +1,27 @@
-"""A wrapper around the BLAST tool."""
+"""A wrapper for the NCBI BLAST tool."""
 
+import os
 import logging
 import subprocess
-from parse import BlastResult
 
 logger = logging.getLogger('root')
 
 
-def blast(algorithm, seqid, query, dbpath):
+def blast(algorithm, queryfile, db):
     """Run a blast search, check outcome and return parsed result."""
-    queryfile = 'blast/query_%s.fas' % seqid
-    outfile = 'blast/blastout_%s.xml' % seqid
-    with open(queryfile, 'w') as f:
-        f.write('>%s\n%s' % (seqid, query))
+    name = os.path.basename(queryfile)
+    outfilename = 'blast/blastout_%s.xml' % name
+
+    if not os.path.exists(f"{ db }.nin"):
+        raise FileNotFoundError(f'BLAST DB "{ db }" not found')
+    if not os.path.exists(queryfile):
+        raise FileNotFoundError(f'Query file "{ queryfile }" not found')
 
     args = (
         algorithm,
-        '-db', dbpath,
+        '-db', db,
         '-query', queryfile,
-        '-out', outfile,
+        '-out', outfilename,
         '-outfmt', '5',
         "-evalue", '1E-50',
         "-max_target_seqs", '10',
@@ -29,4 +32,4 @@ def blast(algorithm, seqid, query, dbpath):
         logger.error(exc.stderr)
         raise exc
 
-    return BlastResult(outfile)
+    return outfilename
