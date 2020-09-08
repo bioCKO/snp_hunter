@@ -6,11 +6,11 @@
 *.out
 *.csv
 output/*
-blast/blastout*
 data/*
 bin/*
 blast/db/*
-cds_alignmnets/*
+blast/*.xml
+cds_alignments/*
 !*/README.txt
 
 # Context dependant
