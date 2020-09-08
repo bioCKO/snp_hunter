@@ -81,7 +81,7 @@ class BlastResult:
             'E-value',
             'Bitscore',
             'Identity_percent',
-            'Alignment_length'
+            'Alignment_length',
             'Qcover_percent',
         ])
 

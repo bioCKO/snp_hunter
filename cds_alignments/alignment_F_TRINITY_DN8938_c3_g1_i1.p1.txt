@@ -1,0 +1,132 @@
+### Output from blastn ###
+DB:    
+Iterations:  1
+
+================================================================================
+
+Iteration 0: CDS_query (600 bp)
+
+Hits:  1
+Hit 1: CSD_subject (684 bp)
+3 HSPs
+
+HSP 1
+Identity:   82%          E-value:  1.22e-96       Q-cover: 63.74269005847953%
+Identities: 357/436      Bitscore: 337.211        Q-range: 163:599
+Frame:      1            Gaps:     10             S-range: 169:605
+
+0         10        20        30        40        50        60        70        
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+CATACAGGAGAGAAACCCTATGAATGTTTACTATGCCAAAGGTCCTTCTCTCACAAGAATACTTTAGTGCAGCACATTTA
+||||||||||||||||| |||||||||| ||  ||||||| ||||||||| || ||||  |  |||||||||||   | |
+CATACAGGAGAGAAACCATATGAATGTTCACATTGCCAAAAGTCCTTCTCCCAGAAGAGAAAATTAGTGCAGCA-TCTGA
+
+80        90        100       110       120       130       140       150       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+-TGTTCATACAGGAGAGAAACCGTATGAATGTTCGCACTGTCAAAAATC-TT-TCAGTAAGAAGAGTACTTTAGTGCAGC
+   ||||||||||||||||||||||||||||| | || ||| |||| || || ||   || || |||| |||||||||||
+CCATTCATACAGGAGAGAAACCGTATGAATGTACACAGTGTAAAAAGTCCTTCTCCACAA-AA-AGTAATTTAGTGCAGC
+
+160       170       180       190       200       210       220       230       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+ACATTAATGTGCATACGGGAGAGAAACCGTACAAATGTTCACACTGCCTAAAGGCCTTCTCTCACAGGAGTACTTTAGTG
+|||| ||||| ||||| ||||||||||| ||  |||||||||| |||| |||| ||||||| || | ||| |  ||||||
+ACATGAATGTTCATACAGGAGAGAAACCATATGAATGTTCACATTGCCAAAAGTCCTTCTCCCAGAAGAGAAAATTAGTG
+
+240       250       260       270       280       290       300       310       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+CAGCACATGAGTGTTCATACAGGAGAGAAACCGTATGAATGTTCGCACTGTCAAAAATC-TT-TCAGTAAGAAGAGTACT
+|||||  |||   ||||||||||||||||||||||||||||| | || ||| |||| || || ||   || || |||| |
+CAGCATCTGACCATTCATACAGGAGAGAAACCGTATGAATGTACACAGTGTAAAAAGTCCTTCTCCACAA-AA-AGTAAT
+
+320       330       340       350       360       370       380       390       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+TTAGTGCAGCACATTAATGTGCATACGGGAGAGAAACCGTACAAATGTTCACACTGCCTAAAGGCCTTCTCTCACAGGAG
+|||||||||||||| ||||| ||||| ||||||||||| ||  |||||||||| |||| | |  ||||||||   | |||
+TTAGTGCAGCACATGAATGTTCATACAGGAGAGAAACCATATGAATGTTCACATTGCCGAGAAACCTTCTCTATAAAGAG
+
+400       410       420       430       440       450       460       470       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+TACTTTAGTGCAGCACATGAGTGTTCATACAGGAGAGAAACC
+|| ||||||  ||||||||  ||||||||||||||| |||||
+TAATTTAGTTAAGCACATGTTTGTTCATACAGGAGACAAACC
+
+
+HSP 2
+Identity:   80%          E-value:  9.63e-83       Q-cover: 60.380116959064324%
+Identities: 332/413      Bitscore: 291.044        Q-range: 187:600
+Frame:      1            Gaps:     6              S-range: 23:438
+
+0         10        20        30        40        50        60        70        
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+TGT-TT-ACTATGCCAAAGGTCCTTCTCTCACAAGAATACTTTAGTGCAGCACATTTATGTTCATACAGGAGAGAAACCG
+||| || || |||||| | | ||||||| || | || || |||||||||||||||   |||||||||| | |||||| | 
+TGTATTCACAATGCCAGAAGACCTTCTCCCAGAGGAGTAATTTAGTGCAGCACATGACTGTTCATACAAGTGAGAAATCA
+
+80        90        100       110       120       130       140       150       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+TATGAATGTTCGCACTGTCAAAAATCTTTCAGTAAGAAGAGTACTTTAGTGCAGCACATTAATGTGCATACGGGAGAGAA
+||||||||||| || ||||||||| | |||   || ||| ||| ||||||   ||| || | ||| ||||| ||||||||
+TATGAATGTTCACAGTGTCAAAAAGCATTCTCCAAAAAGGGTAATTTAGTAAGGCATATGACTGTTCATACAGGAGAGAA
+
+160       170       180       190       200       210       220       230       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+ACCGTACAAATGTTCACACTGCCTAAAGGCCTTCTCTCACAGGAGTACTTTAGTGCAGCACATGAGTGTTCATACAGGAG
+||| ||  |||||||||| |||| |||| ||||||| || | ||| |  |||||||||||  |||   ||||||||||||
+ACCATATGAATGTTCACATTGCCAAAAGTCCTTCTCCCAGAAGAGAAAATTAGTGCAGCATCTGACCATTCATACAGGAG
+
+240       250       260       270       280       290       300       310       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+AGAAACCGTATGAATGTTCGCACTGTCAAAAATC-TT-TCAGTAAGAAGAGTACTTTAGTGCAGCACATTAATGTGCATA
+||||||||||||||||| | || ||| |||| || || ||   || || |||| ||||||||||||||| ||||| ||||
+AGAAACCGTATGAATGTACACAGTGTAAAAAGTCCTTCTCCACAA-AA-AGTAATTTAGTGCAGCACATGAATGTTCATA
+
+320       330       340       350       360       370       380       390       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+CGGGAGAGAAACCGTACAAATGTTCACACTGCCTAAAGGCCTTCTCTCACAGGAGTACTTTAGTGCAGCACATGAGTGTT
+| ||||||||||| ||  |||||||||| |||| |||| ||||||| || | ||| |  |||||||||||  |||   ||
+CAGGAGAGAAACCATATGAATGTTCACATTGCCAAAAGTCCTTCTCCCAGAAGAGAAAATTAGTGCAGCATCTGACCATT
+
+400       410       420       430       440       450       460       470       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+CATACAGGAGAGAAACCG
+||||||||||||||||||
+CATACAGGAGAGAAACCG
+
+
+HSP 3
+Identity:   81%          E-value:  1.25e-76       Q-cover: 53.654970760233915%
+Identities: 298/367      Bitscore: 270.731        Q-range: 143:510
+Frame:      1            Gaps:     8              S-range: 317:684
+
+0         10        20        30        40        50        60        70        
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+TACTGCAGCACGTGAATATCCATACAGGAGAGAAACCCTATGAATGTTTACTATGCCAAAGGTCCTTCTCTCACAAGAAT
+|| |||||||| ||||| | ||||||||||||||||| |||||||||| ||  ||||||| ||||||||| || ||||  
+TAGTGCAGCACATGAATGTTCATACAGGAGAGAAACCATATGAATGTTCACATTGCCAAAAGTCCTTCTCCCAGAAGAGA
+
+80        90        100       110       120       130       140       150       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+ACTTTAGTGCAGCACATTTA-TGTTCATACAGGAGAGAAACCGTATGAATGTTCGCACTGTCAAAAATC-TT-TCAGTAA
+|  |||||||||||   | |   ||||||||||||||||||||||||||||| | || ||| |||| || || ||   ||
+AAATTAGTGCAGCA-TCTGACCATTCATACAGGAGAGAAACCGTATGAATGTACACAGTGTAAAAAGTCCTTCTCCACAA
+
+160       170       180       190       200       210       220       230       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+GAAGAGTACTTTAGTGCAGCACATTAATGTGCATACGGGAGAGAAACCGTACAAATGTTCACACTGCCTAAAGGCCTTCT
+ || |||| ||||||||||||||| ||||| ||||| ||||||||||| ||  |||||||||| |||| | |  ||||||
+-AA-AGTAATTTAGTGCAGCACATGAATGTTCATACAGGAGAGAAACCATATGAATGTTCACATTGCCGAGAAACCTTCT
+
+240       250       260       270       280       290       300       310       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+CTCACAGGAGTACTTTAGTGCAGCACATGAGTGTTCATACAGGAGAGAAACCGTATGAATGTTCGCACTGTCAAAAATC-
+||   | ||||| ||||||  ||||||||  ||||||||||||||| ||||| ||||||||||| || || |||||| | 
+CTATAAAGAGTAATTTAGTTAAGCACATGTTTGTTCATACAGGAGACAAACCATATGAATGTTCACAGTGCCAAAAAACC
+
+320       330       340       350       360       370       380       390       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+TTTCAGTAAGAAGAGTACTTTAGTGCAGCACATTAATGTGCATACGGGAGAG
+||||  |  ||||| |  |||||||| |||||| | ||| ||||| ||||||
+TTTCCCTG-GAAGAATGATTTAGTGCGGCACATGACTGTTCATACAGGAGAG
+
+

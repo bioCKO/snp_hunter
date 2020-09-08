@@ -1,0 +1,72 @@
+### Output from blastn ###
+DB:    
+Iterations:  1
+
+================================================================================
+
+Iteration 0: CDS_query (585 bp)
+
+Hits:  1
+Hit 1: CSD_subject (1656 bp)
+2 HSPs
+
+HSP 1
+Identity:   100%         E-value:  0.00e+00       Q-cover: 22.584541062801932%
+Identities: 375/374      Bitscore: 693.614        Q-range: 211:585
+Frame:      1            Gaps:     0              S-range: 823:1197
+
+0         10        20        30        40        50        60        70        
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+CAGGGTGGTGGTGAACTTGAGAGTTGGGTTCCATGGCTGGTTGTCGAAACTAACACCCACCCGGTTGTGGCTGTTGCTTG
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+CAGGGTGGTGGTGAACTTGAGAGTTGGGTTCCATGGCTGGTTGTCGAAACTAACACCCACCCGGTTGTGGCTGTTGCTTG
+
+80        90        100       110       120       130       140       150       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+TGGTGATAATCACTCATCTGCAATCACAGATGATGGATACCTGTTAACTTGGGGGTGTGGCCGCCACGGCAAATTGTGTC
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+TGGTGATAATCACTCATCTGCAATCACAGATGATGGATACCTGTTAACTTGGGGGTGTGGCCGCCACGGCAAATTGTGTC
+
+160       170       180       190       200       210       220       230       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+AGGGAGAGGAGAACTTTTCCTCACAGTTTATCCCAGTGATTGTCCGTCGCCTACGACACATCAAAGTTGTTTTGGTTGGT
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+AGGGAGAGGAGAACTTTTCCTCACAGTTTATCCCAGTGATTGTCCGTCGCCTACGACACATCAAAGTTGTTTTGGTTGGT
+
+240       250       260       270       280       290       300       310       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+TGTGGAGGTTGCCACACAATGGTTCTGGGTTACAGACGCTCAGAAGAGGAGGAGACCACTGGGGAGGAGCACAAAAATCA
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+TGTGGAGGTTGCCACACAATGGTTCTGGGTTACAGACGCTCAGAAGAGGAGGAGACCACTGGGGAGGAGCACAAAAATCA
+
+320       330       340       350       360       370       380       390       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+CCCTCAACACTCATCAGTTAATAGCACTGCTCGTGCACGACGTAGGATCACAGAT
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||
+CCCTCAACACTCATCAGTTAATAGCACTGCTCGTGCACGACGTAGGATCACAGAT
+
+
+HSP 2
+Identity:   99%          E-value:  1.31e-114      Q-cover: 13.707729468599034%
+Identities: 224/227      Bitscore: 398.15         Q-range: 1:228
+Frame:      1            Gaps:     1              S-range: 772:998
+
+0         10        20        30        40        50        60        70        
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+GAAAGGGGAACAGTATACTCATGTGGCTCAGGCAATAGTGGAGAGCTTGGGCAGGGTGGTGGTGAACTTGAGAGTTGGGT
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+GAAAGGGGAACAGTATACTCATGTGGCTCAGGCAATAGTGGAGAGCTTGGGCAGGGTGGTGGTGAACTTGAGAGTTGGGT
+
+80        90        100       110       120       130       140       150       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+TCCATGGCTGGTTGTCGAAACTAACACCCACCCGGTTGTGGCTGTTGCTTGTGGTGATAATCACTCATCTGCAATCACAG
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+TCCATGGCTGGTTGTCGAAACTAACACCCACCCGGTTGTGGCTGTTGCTTGTGGTGATAATCACTCATCTGCAATCACAG
+
+160       170       180       190       200       210       220       230       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+ATGATGGATACCTGTTAACTTGGGGGTGTGGCCGCCACGGCAAATTGTGTCAGGGTGGTGGTGAACTT
+||||||||||||||||||||||||||||||||||||||||||||||||||||||| |  || ||||||
+ATGATGGATACCTGTTAACTTGGGGGTGTGGCCGCCACGGCAAATTGTGTCAGGGAGA-GGAGAACTT
+
+

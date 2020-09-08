@@ -1,0 +1,42 @@
+### Output from blastn ###
+DB:    
+Iterations:  1
+
+================================================================================
+
+Iteration 0: CDS_query (330 bp)
+
+Hits:  1
+Hit 1: CSD_subject (345 bp)
+1 HSPs
+
+HSP 1
+Identity:   90%          E-value:  4.16e-116      Q-cover: 88.40579710144928%
+Identities: 276/305      Bitscore: 399.997        Q-range: 13:318
+Frame:      1            Gaps:     0              S-range: 22:327
+
+0         10        20        30        40        50        60        70        
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+TCCCGTTTCTGTTCCAAGGGTGGGGTTTGTGCTTACTGTAATACAAATACATCCATTGCACATCTCACGGGTCTTGAATC
+||||||||| ||||||||||||| |||||||| |||||||||||||||||| | ||||||| ||||| || |||||||||
+TCCCGTTTCCGTTCCAAGGGTGGAGTTTGTGCCTACTGTAATACAAATACACCTATTGCACGTCTCATGGATCTTGAATC
+
+80        90        100       110       120       130       140       150       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+TCCATACTTTGATGTCATCTGGCTCAAGATTTCCTTGCCCTCTATTACTCTGCTTTTATGTTTTATATATCTCTCTCCTT
+|||| |||||||||  |||||||||||||||||||||||||||| ||||||| |||||||||| || |||||||||||| 
+TCCACACTTTGATGCTATCTGGCTCAAGATTTCCTTGCCCTCTACTACTCTGTTTTTATGTTTCATTTATCTCTCTCCTA
+
+160       170       180       190       200       210       220       230       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+ATTCCTCCAACTATGTACAATTCTTTGACTGTTTAATTTCTTGCCATGAGATGTTGCTTTCTTCACATCCACGCACCAAA
+||||||||||||||||||||||||| |||| ||||| ||| ||| | |||| | ||||||||||||||||||||||| ||
+ATTCCTCCAACTATGTACAATTCTTCGACTATTTAACTTCCTGCTACGAGACGCTGCTTTCTTCACATCCACGCACCGAA
+
+240       250       260       270       280       290       300       310       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+ATCCTCTATGCAGGGGAGTTTAATGTACACAACAAAGAATGGCTTGACTCAACTCGGGATGATCCT
+||||||||||||||||| ||||||||||||| |||| |||||| || |||||||||||||||||||
+ATCCTCTATGCAGGGGATTTTAATGTACACAGCAAACAATGGCGTGGCTCAACTCGGGATGATCCT
+
+

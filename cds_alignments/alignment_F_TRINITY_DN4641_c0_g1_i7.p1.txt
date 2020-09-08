@@ -1,0 +1,252 @@
+### Output from blastn ###
+DB:    
+Iterations:  1
+
+================================================================================
+
+Iteration 0: CDS_query (501 bp)
+
+Hits:  1
+Hit 1: CSD_subject (555 bp)
+9 HSPs
+
+HSP 1
+Identity:   85%          E-value:  3.67e-125      Q-cover: 79.63963963963964%
+Identities: 376/442      Bitscore: 431.39         Q-range: 1:443
+Frame:      1            Gaps:     6              S-range: 34:476
+
+0         10        20        30        40        50        60        70        
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+TGTTCACACTGCC-AAAAGACCTTCTCCCAGAAGAGTAATTTAATGAAGCATATGGATGTTCATGCTGGAGAGAAACCAT
+|||||||| ||||  |||| |||||||| |||||||||||||| |||||||||||  ||||||| | |||||||||||||
+TGTTCACAGTGCCTGAAAG-CCTTCTCCAAGAAGAGTAATTTAGTGAAGCATATGACTGTTCATACAGGAGAGAAACCAT
+
+80        90        100       110       120       130       140       150       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+ATGAATGTTCGCACTGCCAAAAGGCCTTCTTCCATAAGAGTAGTCTAGTGGGGCACATGAGAGTTCATACAGGAGAGAAA
+|||||||||| || ||||| |||||||||| ||| || |||| | || ||   |||||||  ||||||||||||||||||
+ATGAATGTTCACAATGCCAGAAGGCCTTCTCCCAGAAAAGTAATTTAATGCAACACATGACTGTTCATACAGGAGAGAAA
+
+160       170       180       190       200       210       220       230       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+CCATATGAATGTTCACACTGCC-AAAAGACCTTTTCACGAAAGAGTCATTTAGTGGGACACATGACTGTTCATACAGGAG
+||||||||||||||||| |||  ||||| |||| || |  ||||||  |||| | |||||||||||||||||||||||||
+CCATATGAATGTTCACAGTGCTTAAAAG-CCTTCTCCCAGAAGAGTTCTTTACTCGGACACATGACTGTTCATACAGGAG
+
+240       250       260       270       280       290       300       310       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+AGAAACCATATGAATGTTCACACTGCCAAAAGACCTTCTCCCAGAAGAGTAATTTAATGAAGCACATGGATGTTCATGCA
+||||||| ||| ||||||||||||||  |||| |||||||||||||||||  |||| |   |||||||  | ||||| ||
+AGAAACCGTATAAATGTTCACACTGCTTAAAGGCCTTCTCCCAGAAGAGTTCTTTACTCGGGCACATGCCTATTCATACA
+
+320       330       340       350       360       370       380       390       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+GGAGAGAAACCATATGAATGTTCGCACTGCCAAAAGGCCTTCTTCCATAA-GAGTAGTCTAGTAGGGCACATGAGAGTTC
+|||||||||||  |||||||||| ||||||  ||||||||||| ||| || ||||  | || |   ||||||||  ||||
+GGAGAGAAACCGCATGAATGTTCACACTGCTTAAAGGCCTTCT-CCAGAAAGAGTGTTTTAATTAAGCACATGATTGTTC
+
+400       410       420       430       440       450       460       470       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+ATACAGGAGAGAAACCATATGAATGTTCACACTGCCAAAAGACCTT
+|||||||||||||||| |||||||||||||||||||||||| ||||
+ATACAGGAGAGAAACCGTATGAATGTTCACACTGCCAAAAGGCCTT
+
+
+HSP 2
+Identity:   84%          E-value:  1.73e-113      Q-cover: 80.0%
+Identities: 372/444      Bitscore: 392.61         Q-range: 57:501
+Frame:      1            Gaps:     8              S-range: 6:452
+
+0         10        20        30        40        50        60        70        
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+TGTTCATGCTGGAGAGAAACCATATGAATGTTCGCACTGCCAAAAGGCCTTCTTCCATAAGAGTAGTCTAGTGGGGCACA
+||||||| | ||||||||||||||| ||||||| || ||||  || ||||||| | | ||||||| | |||||  ||| |
+TGTTCATACAGGAGAGAAACCATATAAATGTTCACAGTGCCTGAAAGCCTTCTCCAAGAAGAGTAATTTAGTGAAGCATA
+
+80        90        100       110       120       130       140       150       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+TGAGAGTTCATACAGGAGAGAAACCATATGAATGTTCACACTGCCAAAAGACCTTTTCAC-GAAAGAGTCATTTAGTGGG
+|||  ||||||||||||||||||||||||||||||||||| ||||| ||| |||| || | |||| ||| ||||| ||  
+TGACTGTTCATACAGGAGAGAAACCATATGAATGTTCACAATGCCAGAAGGCCTTCTCCCAGAAA-AGTAATTTAATGCA
+
+160       170       180       190       200       210       220       230       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+ACACATGACTGTTCATACAGGAGAGAAACCATATGAATGTTCACACTGCC-AAAAGACCTTCTCCCAGAAGAGTAATTTA
+||||||||||||||||||||||||||||||||||||||||||||| |||  ||||| |||||||||||||||||  ||||
+ACACATGACTGTTCATACAGGAGAGAAACCATATGAATGTTCACAGTGCTTAAAAG-CCTTCTCCCAGAAGAGTTCTTTA
+
+240       250       260       270       280       290       300       310       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+AT-GAAGCACATGGATGTTCATGCAGGAGAGAAACCATATGAATGTTCGCACTGCCAAAAGGCCTTCTTCCATAAGAGTA
+ | | | ||||||  ||||||| ||||||||||||| ||| ||||||| ||||||  ||||||||||| ||| |||||| 
+CTCGGA-CACATGACTGTTCATACAGGAGAGAAACCGTATAAATGTTCACACTGCTTAAAGGCCTTCTCCCAGAAGAGTT
+
+320       330       340       350       360       370       380       390       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+GTCTAGTAGGGCACATGAGAGTTCATACAGGAGAGAAACCATATGAATGTTCACACTGCCAAAAGACCTTTTCACGAAAG
+ | || | |||||||||    |||||||||||||||||||  |||||||||||||||||  |||| |||| ||  |||||
+CTTTACTCGGGCACATGCCTATTCATACAGGAGAGAAACCGCATGAATGTTCACACTGCTTAAAGGCCTTCTCCAGAAAG
+
+400       410       420       430       440       450       460       470       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+--TCATTTCGTGGGACACATGACTGTTCATACAGGAGAGAAACCATATGA
+  |  |||  |    ||||||| ||||||||||||||||||||| |||||
+AGTGTTTTAATTAAGCACATGATTGTTCATACAGGAGAGAAACCGTATGA
+
+
+HSP 3
+Identity:   86%          E-value:  2.94e-101      Q-cover: 64.68468468468468%
+Identities: 307/359      Bitscore: 351.984        Q-range: 136:495
+Frame:      1            Gaps:     6              S-range: 1:362
+
+0         10        20        30        40        50        60        70        
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+ATGAGAGTTCATACAGGAGAGAAACCATATGAATGTTCACACTGCC-AAAAGACCTT-TTCACGAAAGAGTCATTTAGTG
+||||  |||||||||||||||||||||||| |||||||||| ||||  |||| |||| | || | |||||| ||||||||
+ATGACTGTTCATACAGGAGAGAAACCATATAAATGTTCACAGTGCCTGAAAG-CCTTCTCCAAG-AAGAGTAATTTAGTG
+
+80        90        100       110       120       130       140       150       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+GGACACATGACTGTTCATACAGGAGAGAAACCATATGAATGTTCACACTGCCAAAAGACCTTCTCCCAGAAGAGTAATTT
+   || ||||||||||||||||||||||||||||||||||||||||| ||||| ||| ||||||||||||| ||||||||
+AAGCATATGACTGTTCATACAGGAGAGAAACCATATGAATGTTCACAATGCCAGAAGGCCTTCTCCCAGAAAAGTAATTT
+
+160       170       180       190       200       210       220       230       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+AATGAAGCACATGGATGTTCATGCAGGAGAGAAACCATATGAATGTTCGCACTGCCAAAAGGCCTTCTTCCATAAGAGTA
+|||| | ||||||  ||||||| ||||||||||||||||||||||||| || |||  ||| ||||||| ||| |||||| 
+AATGCAACACATGACTGTTCATACAGGAGAGAAACCATATGAATGTTCACAGTGCTTAAAAGCCTTCTCCCAGAAGAGTT
+
+240       250       260       270       280       290       300       310       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+GTCTAGTAGGGCACATGAGAGTTCATACAGGAGAGAAACCATATGAATGTTCACACTGCCAAAAGACCTTTTCAC-GAA-
+ | || | || |||||||  |||||||||||||||||||| ||| ||||||||||||||  |||| |||| || | ||| 
+CTTTACTCGGACACATGACTGTTCATACAGGAGAGAAACCGTATAAATGTTCACACTGCTTAAAGGCCTTCTCCCAGAAG
+
+320       330       340       350       360       370       380       390       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+AGTCATTTCGTGGGACACATGACTGTTCATACAGGAGAGAAACC
+|||  |||  | || |||||| || |||||||||||||||||||
+AGTTCTTTACTCGGGCACATGCCTATTCATACAGGAGAGAAACC
+
+
+HSP 4
+Identity:   87%          E-value:  3.88e-85       Q-cover: 50.270270270270274%
+Identities: 244/279      Bitscore: 298.431        Q-range: 220:499
+Frame:      1            Gaps:     6              S-range: 1:282
+
+0         10        20        30        40        50        60        70        
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+ATGACTGTTCATACAGGAGAGAAACCATATGAATGTTCACACTGCC-AAAAGACCTTCTCCCAGAAGAGTAATTTAATGA
+|||||||||||||||||||||||||||||| |||||||||| ||||  |||| |||||||| |||||||||||||| |||
+ATGACTGTTCATACAGGAGAGAAACCATATAAATGTTCACAGTGCCTGAAAG-CCTTCTCCAAGAAGAGTAATTTAGTGA
+
+80        90        100       110       120       130       140       150       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+AGCACATGGATGTTCATGCAGGAGAGAAACCATATGAATGTTCGCACTGCCAAAAGGCCTTCTTCCATAAGAGTAGTCTA
+|||| |||  ||||||| ||||||||||||||||||||||||| || ||||| |||||||||| ||| || |||| | ||
+AGCATATGACTGTTCATACAGGAGAGAAACCATATGAATGTTCACAATGCCAGAAGGCCTTCTCCCAGAAAAGTAATTTA
+
+160       170       180       190       200       210       220       230       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+GTAGGGCACATGAGAGTTCATACAGGAGAGAAACCATATGAATGTTCACACTGCC-AAAAGACCTTTTCAC-GAA-AGTC
+ |    |||||||  ||||||||||||||||||||||||||||||||||| |||  ||||| |||| || | ||| ||| 
+ATGCAACACATGACTGTTCATACAGGAGAGAAACCATATGAATGTTCACAGTGCTTAAAAG-CCTTCTCCCAGAAGAGTT
+
+240       250       260       270       280       290       300       310       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+ATTTCGTGGGACACATGACTGTTCATACAGGAGAGAAACCATAT
+ |||  | |||||||||||||||||||||||||||||||| |||
+CTTTACTCGGACACATGACTGTTCATACAGGAGAGAAACCGTAT
+
+
+HSP 5
+Identity:   86%          E-value:  1.88e-53       Q-cover: 34.5945945945946%
+Identities: 165/192      Bitscore: 193.172        Q-range: 309:501
+Frame:      1            Gaps:     2              S-range: 6:200
+
+0         10        20        30        40        50        60        70        
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+TGTTCATGCAGGAGAGAAACCATATGAATGTTCGCACTGCCAAAAGGCCTTCTTCCATAAGAGTAGTCTAGTAGGGCACA
+||||||| ||||||||||||||||| ||||||| || ||||  || ||||||| | | ||||||| | ||||   ||| |
+TGTTCATACAGGAGAGAAACCATATAAATGTTCACAGTGCCTGAAAGCCTTCTCCAAGAAGAGTAATTTAGTGAAGCATA
+
+80        90        100       110       120       130       140       150       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+TGAGAGTTCATACAGGAGAGAAACCATATGAATGTTCACACTGCCAAAAGACCTTTTCAC-G-AAAGTCATTTCGTGGGA
+|||  ||||||||||||||||||||||||||||||||||| ||||| ||| |||| || | | ||||| ||||  ||  |
+TGACTGTTCATACAGGAGAGAAACCATATGAATGTTCACAATGCCAGAAGGCCTTCTCCCAGAAAAGTAATTTAATGCAA
+
+160       170       180       190       200       210       220       230       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+CACATGACTGTTCATACAGGAGAGAAACCATATGA
+|||||||||||||||||||||||||||||||||||
+CACATGACTGTTCATACAGGAGAGAAACCATATGA
+
+
+HSP 6
+Identity:   83%          E-value:  4.11e-45       Q-cover: 34.234234234234236%
+Identities: 158/190      Bitscore: 165.472        Q-range: 1:191
+Frame:      1            Gaps:     2              S-range: 286:476
+
+0         10        20        30        40        50        60        70        
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+TGTTCACACTGCCAAAAGACCTTCTCCCAGAAGAGTAATTTAATGAAGCATATGGATGTTCATGCTGGAGAGAAACCATA
+||||||||||||  |||| |||||||||||||||||  |||| |   ||| |||  | ||||| | |||||||||||  |
+TGTTCACACTGCTTAAAGGCCTTCTCCCAGAAGAGTTCTTTACTCGGGCACATGCCTATTCATACAGGAGAGAAACCGCA
+
+80        90        100       110       120       130       140       150       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+TGAATGTTCGCACTGCCAAAAGGCCTTCTTCCA-TAAGAGTAGTCTAGTGGGGCACATGAGAGTTCATACAGGAGAGAAA
+||||||||| ||||||  ||||||||||| |||  ||||||  | || |   ||||||||  ||||||||||||||||||
+TGAATGTTCACACTGCTTAAAGGCCTTCT-CCAGAAAGAGTGTTTTAATTAAGCACATGATTGTTCATACAGGAGAGAAA
+
+160       170       180       190       200       210       220       230       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+CCATATGAATGTTCACACTGCCAAAAGACCTT
+|| |||||||||||||||||||||||| ||||
+CCGTATGAATGTTCACACTGCCAAAAGGCCTT
+
+
+HSP 7
+Identity:   88%          E-value:  3.24e-31       Q-cover: 20.36036036036036%
+Identities: 100/113      Bitscore: 119.306        Q-range: 388:501
+Frame:      1            Gaps:     4              S-range: 1:116
+
+0         10        20        30        40        50        60        70        
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+ATGAGAGTTCATACAGGAGAGAAACCATATGAATGTTCACACTGCCA-AAAGACCTTTTC-ACGAA-AGTCATTTCGTGG
+||||  |||||||||||||||||||||||| |||||||||| ||||  |||| |||| || | ||| ||| |||| ||| 
+ATGACTGTTCATACAGGAGAGAAACCATATAAATGTTCACAGTGCCTGAAAG-CCTTCTCCAAGAAGAGTAATTTAGTGA
+
+80        90        100       110       120       130       140       150       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+GACACATGACTGTTCATACAGGAGAGAAACCATATGA
+  || ||||||||||||||||||||||||||||||||
+AGCATATGACTGTTCATACAGGAGAGAAACCATATGA
+
+
+HSP 8
+Identity:   97%          E-value:  1.54e-14       Q-cover: 7.027027027027027%
+Identities: 38/39        Bitscore: 63.9064        Q-range: 462:501
+Frame:      1            Gaps:     0              S-range: 516:555
+
+0         10        20        30        40        50        60        70        
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+TGGGACACATGACTGTTCATACAGGAGAGAAACCATATGA
+|||| ||||||||||||||||||||||||||||| |||||
+TGGGGCACATGACTGTTCATACAGGAGAGAAACCGTATGA
+
+
+HSP 9
+Identity:   103%         E-value:  2.58e-12       Q-cover: 5.225225225225225%
+Identities: 30/29        Bitscore: 56.5198        Q-range: 470:499
+Frame:      1            Gaps:     0              S-range: 1:30
+
+0         10        20        30        40        50        60        70        
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+ATGACTGTTCATACAGGAGAGAAACCATAT
+||||||||||||||||||||||||||||||
+ATGACTGTTCATACAGGAGAGAAACCATAT
+
+

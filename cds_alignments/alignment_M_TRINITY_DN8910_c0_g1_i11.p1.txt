@@ -1,0 +1,54 @@
+### Output from blastn ###
+DB:    
+Iterations:  1
+
+================================================================================
+
+Iteration 0: CDS_query (483 bp)
+
+Hits:  1
+Hit 1: CSD_subject (549 bp)
+1 HSPs
+
+HSP 1
+Identity:   84%          E-value:  3.50e-125      Q-cover: 82.69581056466302%
+Identities: 383/454      Bitscore: 431.39         Q-range: 1:455
+Frame:      1            Gaps:     4              S-range: 85:539
+
+0         10        20        30        40        50        60        70        
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+ATGATTGTACATACAGGAGAGAAACCATACGAATGTTCACAGTGCCAGAAGAACTT-TCCCAGGAAGAGTGATTTAGTGG
+|||| ||| ||||||||||||||||| || ||||||||||| ||||| |||  ||| ||||| ||||||| ||||| || 
+ATGACTGTTCATACAGGAGAGAAACCGTATGAATGTTCACACTGCCAAAAGGCCTTCTCCCA-GAAGAGTCATTTAATGC
+
+80        90        100       110       120       130       140       150       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+AGCACAGGACTGTTCATACAGGAGAAAAACCATATGAATGTTTGCACTGTCAAAAGGTCTTCTCCCAGAAGGGGAATTTA
+|||| | |||||||||||||||||| ||||| ||||||||||  |||   ||||||| ||||||||||||| |  |||||
+AGCATATGACTGTTCATACAGGAGAGAAACCGTATGAATGTTCACACAACCAAAAGGCCTTCTCCCAGAAGAGTCATTTA
+
+160       170       180       190       200       210       220       230       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+GTGAGGCATATGATTATTCATACAGGAGAGAAACCTTATGAATGTTTTCACTGCCATACAGCCTTCTCCTATAAGAGTAA
+ ||  |||||||| | ||||||||||||||||||| ||||||||||  |||||| | |  |||||||||  |||||||||
+ATGCAGCATATGACTGTTCATACAGGAGAGAAACCGTATGAATGTTCACACTGCAAAAAGGCCTTCTCCCGTAAGAGTAA
+
+240       250       260       270       280       290       300       310       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+TTTA-ATGACACACATGACCATTCATACACGAGAGAAACCGTATGAATGTTCACAATGCCAGAAGGCCTTCTCCCGGAAA
+||||  |||  ||||||||  |||| ||||||||||||||||||||||||||||| ||||| ||||||||||||| ||| 
+TTTAGTTGA-TCACATGACAGTTCACACACGAGAGAAACCGTATGAATGTTCACACTGCCAAAAGGCCTTCTCCCAGAAG
+
+320       330       340       350       360       370       380       390       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+AGCCATTTAATGGGGCACATGACTGTTCATACAGGAGAGAAACCATATGAATGCTCACATTGCCAAAAGTCCTTCTCCAG
+|| |||||||||  ||| ||||||||||||||||||||||| || |||||||| ||||| ||||||||| ||||||||  
+AGTCATTTAATGCAGCATATGACTGTTCATACAGGAGAGAAGCCGTATGAATGTTCACACTGCCAAAAGGCCTTCTCCCA
+
+400       410       420       430       440       450       460       470       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+GAAGGGTGATTTAGGAAAGCACATGGTTATTCATACAGGAGAGAAACCATATGAATG
+|||| || |||||    |||| |||  | |||||||||||||||| || ||||||||
+GAAGAGTCATTTAATGCAGCATATGACTGTTCATACAGGAGAGAAGCCGTATGAATG
+
+

@@ -1,0 +1,60 @@
+### Output from blastn ###
+DB:    
+Iterations:  1
+
+================================================================================
+
+Iteration 0: CDS_query (534 bp)
+
+Hits:  1
+Hit 1: CSD_subject (414 bp)
+2 HSPs
+
+HSP 1
+Identity:   100%         E-value:  1.76e-117      Q-cover: 52.65700483091788%
+Identities: 219/218      Bitscore: 405.537        Q-range: 4:222
+Frame:      1            Gaps:     0              S-range: 1:219
+
+0         10        20        30        40        50        60        70        
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+ATGCGCCCAGTCCAGGGTGCCCTCGAGCTGGCCAAGGGCAAGAGGGAACGTGCGACGGAGGAGGAGGAGGAGGCCAAGGG
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+ATGCGCCCAGTCCAGGGTGCCCTCGAGCTGGCCAAGGGCAAGAGGGAACGTGCGACGGAGGAGGAGGAGGAGGCCAAGGG
+
+80        90        100       110       120       130       140       150       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+CACTAACCTGCCAAAGGTCGCCCCGAACTTCTTGGGCACTCTGATGTCCTCCGGCGTCGAGAGGCGTGGCAGCGAGCCCT
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+CACTAACCTGCCAAAGGTCGCCCCGAACTTCTTGGGCACTCTGATGTCCTCCGGCGTCGAGAGGCGTGGCAGCGAGCCCT
+
+160       170       180       190       200       210       220       230       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+CCTGGTACAAGAGGGCCTTCGCAGAGCCTTTCTGGCCCATCAACCCTCTAGTGGAGCAG
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+CCTGGTACAAGAGGGCCTTCGCAGAGCCTTTCTGGCCCATCAACCCTCTAGTGGAGCAG
+
+
+HSP 2
+Identity:   101%         E-value:  2.31e-106      Q-cover: 47.82608695652174%
+Identities: 199/198      Bitscore: 368.604        Q-range: 336:534
+Frame:      1            Gaps:     0              S-range: 216:414
+
+0         10        20        30        40        50        60        70        
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+GCAGATGCACAGCAGCCTGGAGGCACTAGTGGAGGGAGGAGGCCAGGCCGAAGGCATGGGAAGCTACTGGACCACTGCAG
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+GCAGATGCACAGCAGCCTGGAGGCACTAGTGGAGGGAGGAGGCCAGGCCGAAGGCATGGGAAGCTACTGGACCACTGCAG
+
+80        90        100       110       120       130       140       150       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+TGGAGGCCGCCCACCGACGCCTGCAGGAGTGTCCGCCGCTTCGGGAGGACTTCGAGGCCGTCTTCGGGGACGAGGAATAC
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+TGGAGGCCGCCCACCGACGCCTGCAGGAGTGTCCGCCGCTTCGGGAGGACTTCGAGGCCGTCTTCGGGGACGAGGAATAC
+
+160       170       180       190       200       210       220       230       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+CTCGCAGGCCTGGTCCTTCAGCTCATGAACTCCTCCTGA
+|||||||||||||||||||||||||||||||||||||||
+CTCGCAGGCCTGGTCCTTCAGCTCATGAACTCCTCCTGA
+
+

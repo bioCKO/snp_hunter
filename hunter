@@ -12,6 +12,7 @@ BLAST back against male assembly
 """
 
 import os
+import sys
 import fasta
 import pandas as pd
 from numpy import nan
@@ -45,18 +46,18 @@ blast_combos = [
     ("blastp", FSP_pep, male_hp_pep),
 ]
 
+if '--skip_blast' not in sys.argv:
+    for alg, query, db in blast_combos:
+        logger.info(f"Running {alg}: {query} => {db}...")
+        outfile = blast.blast(alg, query, db)
+        outfiles.append(outfile)
 
-#for alg, query, db in blast_combos:
-#    logger.info(f"Running {alg}: {query} => {db}...")
-#    outfile = blast.blast(alg, query, db)
-#    outfiles.append(outfile)
-
-# %% Write output
-
-# logger.info("Rendering BLAST output to CSV files...")
-#for outfile in outfiles:
-#    result = BlastResult(outfile)
-#    result.to_csv(os.path.basename(outfile).replace('.xml', '.csv'))
+    logger.info("Rendering BLAST output to CSV files...")
+    for outfile in outfiles:
+        result = BlastResult(outfile)
+        result.to_csv(os.path.basename(outfile).replace('.xml', '.csv'))
+else:
+    logger.info('Skipping BLAST')
 
 # %% Filter alignments and CDS BLAST
 
@@ -126,16 +127,19 @@ fpep['CDS_identity'] = cds_identities
 # %% Try and add annotations
 logger.info("Appending annotations...")
 try:
+    raise FileNotFoundError("Annotations don't exist yet for these transcripts")
     m_ants = pd.read_csv('data/MSP_1900_annotated.csv', index_col=0)
     f_ants = pd.read_csv('data/FSP_1825_annotated.csv', index_col=0)
     mpep['Annotation'] = m_ants.reindex(mpep.index)['Definition']
     fpep['Annotation'] = f_ants.reindex(mpep.index)['Definition']
-except Exception as exc:
-    print("Error parsing annotations:\n", str(exc))
 
-# %% Write output to file
-logger.info("Writing output to file...")
-mpep.to_csv('MSP_pep_vs_cds.csv')
-fpep.to_csv('FSP_pep_vs_cds.csv')
+    # Write output to file
+    logger.info("Writing output to file...")
+    mpep.to_csv('MSP_pep_vs_cds.csv')
+    fpep.to_csv('FSP_pep_vs_cds.csv')
+
+
+except Exception as exc:
+    logger.info("Error parsing annotations. Annotations should be added manually.\n")
 
 logger.info("Hunting complete")

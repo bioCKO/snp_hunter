@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+
+"""BLASTN all query sequences against opposite sex assembly CDS."""
+
+import sys
+from blast import blast
+from blast.parse import BlastResult
+
+import logging
+import logging.config
+logging.config.fileConfig('logging/log.conf')
+logger = logging.getLogger(__name__)
+
+
+# Sequences to use as BLAST queries
+MSP_cds = "data/MSP_cds.fas"
+FSP_cds = "data/FSP_cds.fas"
+
+# Assemblies to BLAST against
+male_hp_cds = "blast/db/hp_m_cds.fas"
+female_hp_cds = "blast/db/hp_f_cds.fas"
+
+# %% Generate BLAST alignments
+
+outfiles = []
+
+blast_combos = [
+    ("blastn", MSP_cds, female_hp_cds),
+    ("blastn", FSP_cds, male_hp_cds),
+]
+
+if '--skip_blast' not in sys.argv:
+    for alg, query, db in blast_combos:
+        logger.info(f"Running {alg}: {query} => {db}...")
+        outfile = blast.blast(alg, query, db)
+        outfiles.append(outfile)
+
+    logger.info("Rendering BLAST output to alignment file...")
+    for outfile in outfiles:
+        result = BlastResult(outfile)
+        gender = 'M' if 'FSP' in result.db else 'F'
+        fname = f"cds_alignments/alignment_{ gender }.txt")
+        with open(fname) as f:
+            f.write(result.report())
+        logger.info("Global {gender} CDS alignments written to { fname }")
+else:
+    logger.info('Skipping BLAST')
+
+logger.info("Run complete")

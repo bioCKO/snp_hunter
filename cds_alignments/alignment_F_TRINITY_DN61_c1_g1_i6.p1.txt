@@ -1,0 +1,78 @@
+### Output from blastn ###
+DB:    
+Iterations:  1
+
+================================================================================
+
+Iteration 0: CDS_query (1341 bp)
+
+Hits:  1
+Hit 1: CSD_subject (1356 bp)
+1 HSPs
+
+HSP 1
+Identity:   75%          E-value:  9.68e-59       Q-cover: 51.991150442477874%
+Identities: 527/705      Bitscore: 213.485        Q-range: 510:1215
+Frame:      1            Gaps:     35             S-range: 527:1233
+
+0         10        20        30        40        50        60        70        
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+TCCCCT-CACCTGGCTGGGCACCCCGAAGGACTTCTGGCAGGCGTCGGTGCTCGCCGTGGTGTCGACGGCCGTGGCCGTG
+|||| | ||| ||| ||||||| || ||||||||||||||||| ||||| || || || || || |||||| |||| |||
+TCCCTTGCACGTGGATGGGCACGCCCAAGGACTTCTGGCAGGCCTCGGTTCTGGCGGTCGTATCCACGGCCTTGGC-GTG
+
+80        90        100       110       120       130       140       150       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+-GTGGTGATCATCATCACCATCTTC--GTGGACCAGGAGACCCTCCCGGAGGAGCCGACCTACCCGAACCCGACCGTCCC
+  | || ||| || |||  |  |||  || || |||  ||  | |||| | |  |||  ||||  |||||| ||| || |
+CATCGTCATCTTC-TCA-GAGGTTCTGGTCGAGCAGTCGAAGCACCCG-A-GCCCCG-TCTACGAGAACCCCACCATCTC
+
+160       170       180       190       200       210       220       230       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+CTCCTTCTCGCTGGGCTTCGGGGCGATCCTCTTCGCCTTCGGCGGCGCCGCCGTCTTCCCGACCATCCAGAACGACATGC
+| ||||| |  |||||||||||||||||||||||||||||||||| ||| ||||||||||||||||||||||||||||| 
+CACCTTCGCCATGGGCTTCGGGGCGATCCTCTTCGCCTTCGGCGGGGCCTCCGTCTTCCCGACCATCCAGAACGACATGG
+
+240       250       260       270       280       290       300       310       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+AGGACCGGAACG-ACTTCTGGAAGAGCGTCATCATCGGCTTC-CTGGCCATCCTGTCCATGTACCTGCCGGTGGGGCTCG
+| || |||| || | ||| | ||| | |||||| |||||||| | |   |||||  |  ||||||| || |||| | | |
+AAGATCGGA-CGCAGTTCGGCAAGGGAGTCATCGTCGGCTTCGCCGTG-ATCCTTGCGTTGTACCTCCCTGTGGCGATTG
+
+320       330       340       350       360       370       380       390       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+TCGGCTACGTCATGTTCGGTGAT-GC-CGTGGGCCAGAACATCCTGCAGGCGGTGAACCCGAGCGTGG-CC--GTCATCG
+ |||||||||   || | | ||  |  |||||    ||||||||||| | ||||| ||  |  |  || ||  || || |
+GCGGCTACGTG--GTCCAGGGAAAGGACGTGGAATCGAACATCCTGCTGTCGGTGGACGGGTCCAAGGGCCTGGTGATTG
+
+400       410       420       430       440       450       460       470       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+TGGCCATCGCCCTGGAAATCGTCAACCTCATCTGCACGTACATCATCAGCTCCAACCCCGT-GGCGCAGTCCATCGAGCA
+  ||||||| | |||||||| | |||||| |  |||| ||||||||||||| ||||||| | ||| |||    ||||| |
+CAGCCATCGTCATGGAAATCATAAACCTCCTTGGCACTTACATCATCAGCTTCAACCCCATCGGC-CAGATGTTCGAGGA
+
+480       490       500       510       520       530       540       550       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+GGT--CCTCCACATCCCGGACCGCTTCGGCTGGAAGCGCTGCCTCCTGCGGACTTCCATCGTGCTGGTGCAGATGCTGAT
+| |  ||   | |     ||    ||||| ||||||||||| ||  | ||  || |||| ||| ||||| |  |||||||
+GTTGGCCGGGATAGAAATGAAA--TTCGGATGGAAGCGCTGTCTGATTCGCTCTACCATTGTGGTGGTGGAAGTGCTGAT
+
+560       570       580       590       600       610       620       630       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+CTGCCTG-GCGGTGCCGGACTTCGGCCTCATCCTGAACCTGATCGGCGGGTCCCTCATCACCCTCTGCACCTTCGTCCTC
+| || |  ||| | |||  |||||     ||| |||   ||||||| || |||  ||| ||| ||||  |||||||||||
+CGGCTTAAGCGTT-CCGAGCTTCGATAAGATCATGAGTTTGATCGGAGGCTCCACCATAACCGTCTGTTCCTTCGTCCTC
+
+640       650       660       670       680       690       700       710       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+CCGCCCCTCATGTACATGAGGCTTGTGGACCAGGAGTGCGA-GCCC-GGATGGCCTCAGA-GGACCATCGACCGGTGGGA
+||||| || ||||||||||||||  |||||  | || | || |||| || | |||||||| |||  ||||  | ||||||
+CCGCCGCTGATGTACATGAGGCTCATGGACTTGAAG-G-GATGCCCAGGCTCGCCTCAGAAGGAA-ATCGCGCTGTGGGA
+
+720       730       740       750       760       770       780       790       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+GAGG
+||||
+GAGG
+
+

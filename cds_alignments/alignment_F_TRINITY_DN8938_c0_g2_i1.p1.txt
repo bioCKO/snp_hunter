@@ -1,0 +1,30 @@
+### Output from blastn ###
+DB:    
+Iterations:  1
+
+================================================================================
+
+Iteration 0: CDS_query (342 bp)
+
+Hits:  1
+Hit 1: CSD_subject (426 bp)
+1 HSPs
+
+HSP 1
+Identity:   84%          E-value:  4.71e-27       Q-cover: 26.291079812206572%
+Identities: 94/112       Bitscore: 104.533        Q-range: 195:307
+Frame:      1            Gaps:     0              S-range: 21:133
+
+0         10        20        30        40        50        60        70        
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+ATGTTCACAGTGTCAAAAGACCTTTTACCGGAAGGGTGATTTAATGCAGCATATGACTGTTCATACAGGAGAGAAACCAT
+|||||||  ||| ||||||| ||| |  | || | || ||||| |||||||||||||||||||||||||||| |||||||
+ATGTTCAGTGTGCCAAAAGAGCTTCTCTCAGAGGAGTCATTTAGTGCAGCATATGACTGTTCATACAGGAGAAAAACCAT
+
+80        90        100       110       120       130       140       150       
+|....:....|....:....|....:....|....:....|....:....|....:....|....:....|....:....
+ATGAATGTTCAGTGTGCCAAAAGACCTTCTCCC
+|| | ||||||  ||| |||||||| |||||||
+ATAATTGTTCACAGTGTCAAAAGACTTTCTCCC
+
+
